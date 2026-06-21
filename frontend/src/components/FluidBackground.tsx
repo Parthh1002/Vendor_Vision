@@ -1,11 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import WebGLFluid from "webgl-fluid";
 
-interface FluidBackgroundProps {
-  theme: string;
-}
+interface FluidBackgroundProps {}
 
-export const FluidBackground: React.FC<FluidBackgroundProps> = ({ theme }) => {
+export const FluidBackground: React.FC<FluidBackgroundProps> = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
