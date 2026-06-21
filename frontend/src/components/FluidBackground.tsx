@@ -45,6 +45,7 @@ export const FluidBackground: React.FC<FluidBackgroundProps> = ({ theme }) => {
     // Event forwarder from window to canvas
     const handleWindowMouseMove = (e: MouseEvent) => {
       if (!canvas) return;
+      if (!e.isTrusted) return; // Fix infinite recursion
       const rect = canvas.getBoundingClientRect();
       const clientX = e.clientX;
       const clientY = e.clientY;
@@ -70,9 +71,9 @@ export const FluidBackground: React.FC<FluidBackgroundProps> = ({ theme }) => {
       canvas.dispatchEvent(simEvent);
     };
 
-    // Forward click / mousedown events for splash effects
     const handleWindowMouseDown = (e: MouseEvent) => {
       if (!canvas) return;
+      if (!e.isTrusted) return; // Fix infinite recursion
       const rect = canvas.getBoundingClientRect();
       const clientX = e.clientX;
       const clientY = e.clientY;

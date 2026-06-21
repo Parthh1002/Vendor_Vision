@@ -314,10 +314,9 @@ const Login: React.FC = () => {
         {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
       </button>
 
-      {/* LEFT PANEL: Branding, Live Pipeline, Visual Marketing (lg:col-span-7) */}
-      <div className="lg:col-span-7 flex flex-col justify-between p-4 lg:p-10 z-10 bg-transparent relative overflow-y-auto max-h-full scrollbar-none">
-        {/* Top brand logo & AI scoring badge */}
-        <div className="flex items-center justify-between gap-4 flex-wrap lg:flex-nowrap w-full">
+      {/* MOBILE HEADER (Order 1 on mobile) */}
+      <div className="lg:hidden p-4 pt-6 z-20 w-full order-1 flex flex-col gap-4">
+        <div className="flex items-center justify-between gap-4 flex-wrap w-full">
           <button
             onClick={() => setActivePopup("brand")}
             className="flex items-center gap-3 bg-transparent border-none text-left p-0 cursor-pointer transition-all duration-300 focus:outline-none group focus-visible:ring-2 focus-visible:ring-accent/40 rounded-xl"
@@ -332,7 +331,59 @@ const Login: React.FC = () => {
           </button>
 
           {/* Interactive Utility Buttons in the Header */}
-          <div className="flex items-center gap-2 z-20">
+          <div className="flex flex-wrap justify-center items-center gap-2 z-20">
+            <button
+              onClick={() => setActivePopup("faq")}
+              className="px-2.5 py-1.5 bg-surface/40 hover:bg-surface/80 dark:bg-slate-900/40 dark:hover:bg-slate-900/70 border border-default text-[9px] font-extrabold uppercase tracking-wider text-secondary hover:text-primary rounded-xl transition-all hover:scale-[1.03] active:scale-[0.97] cursor-pointer backdrop-blur-md flex items-center gap-1.5 font-sans"
+            >
+              <HelpCircle size={11} />
+              <span className="font-sans">FAQ</span>
+            </button>
+            <button
+              onClick={() => setActivePopup("copyright")}
+              className="px-2.5 py-1.5 bg-surface/40 hover:bg-surface/80 dark:bg-slate-900/40 dark:hover:bg-slate-900/70 border border-default text-[9px] font-extrabold uppercase tracking-wider text-secondary hover:text-primary rounded-xl transition-all hover:scale-[1.03] active:scale-[0.97] cursor-pointer backdrop-blur-md flex items-center gap-1.5 font-sans"
+            >
+              <Copyright size={11} />
+              <span className="font-sans">Copyright</span>
+            </button>
+            <button
+              onClick={() => setActivePopup("docs")}
+              className="px-2.5 py-1.5 bg-surface/40 hover:bg-surface/80 dark:bg-slate-900/40 dark:hover:bg-slate-900/70 border border-default text-[9px] font-extrabold uppercase tracking-wider text-secondary hover:text-primary rounded-xl transition-all hover:scale-[1.03] active:scale-[0.97] cursor-pointer backdrop-blur-md flex items-center gap-1.5 font-sans"
+            >
+              <BookOpen size={11} />
+              <span className="font-sans">Docs</span>
+            </button>
+          </div>
+
+          <button
+            onClick={() => setActivePopup("liveteams")}
+            className="flex items-center gap-2 px-3 py-1.5 bg-success/15 hover:bg-success/20 border border-success/25 rounded-full text-[10px] font-bold text-success hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 font-sans cursor-pointer mt-2 w-full justify-center sm:w-auto sm:mt-0"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-success animate-ping" />
+            <span className="font-sans">LIVE - 142 PROCUREMENT TEAMS ACTIVE</span>
+          </button>
+        </div>
+      </div>
+
+      {/* LEFT PANEL: Branding, Live Pipeline, Visual Marketing (lg:col-span-7) */}
+      <div className="lg:col-span-7 flex flex-col justify-between p-4 lg:p-10 z-10 bg-transparent relative overflow-y-auto max-h-full scrollbar-none order-3 lg:order-1 pt-0 lg:pt-10">
+        {/* Top brand logo & AI scoring badge */}
+        <div className="hidden lg:flex items-center justify-between gap-4 flex-wrap lg:flex-nowrap w-full">
+          <button
+            onClick={() => setActivePopup("brand")}
+            className="flex items-center gap-3 bg-transparent border-none text-left p-0 cursor-pointer transition-all duration-300 focus:outline-none group focus-visible:ring-2 focus-visible:ring-accent/40 rounded-xl"
+          >
+            <div className="w-10 h-10 bg-accent text-white flex items-center justify-center font-bold text-lg rounded-xl shadow-md shadow-accent/25 group-hover:shadow-[0_8px_20px_rgba(37,99,235,0.4)] group-hover:scale-[1.05] group-active:scale-[0.95] transition-all duration-300">
+              V
+            </div>
+            <div className="leading-tight">
+              <span className="font-extrabold text-base tracking-tight text-primary block leading-none font-sans group-hover:text-accent transition-colors duration-300">VendorVision</span>
+              <span className="text-[9px] font-bold tracking-widest text-secondary uppercase font-sans group-hover:opacity-80 transition-opacity duration-300">procurement • erp</span>
+            </div>
+          </button>
+
+          {/* Interactive Utility Buttons in the Header */}
+          <div className="flex flex-wrap justify-center items-center gap-2 z-20">
             <button
               onClick={() => setActivePopup("faq")}
               className="px-2.5 py-1.5 bg-surface/40 hover:bg-surface/80 dark:bg-slate-900/40 dark:hover:bg-slate-900/70 border border-default text-[9px] font-extrabold uppercase tracking-wider text-secondary hover:text-primary rounded-xl transition-all hover:scale-[1.03] active:scale-[0.97] cursor-pointer backdrop-blur-md flex items-center gap-1.5 font-sans"
@@ -446,7 +497,7 @@ const Login: React.FC = () => {
       </div>
 
       {/* RIGHT PANEL: Authenticators Login/Register Card (lg:col-span-5) */}
-      <div className="lg:col-span-5 flex items-center justify-center p-4 lg:p-8 z-10 bg-transparent border-t lg:border-t-0 lg:border-l border-default">
+      <div className="lg:col-span-5 flex items-center justify-center p-4 lg:p-8 z-10 bg-transparent border-b lg:border-b-0 lg:border-l border-default order-2 lg:order-2 pb-8 lg:pb-8">
         <div className="bg-surface/30 dark:bg-slate-950/20 rounded-3xl p-4 md:p-8 shadow-premium-popup border border-default/80 max-w-md w-full relative transition-all duration-500 backdrop-blur-[2px] overflow-hidden">
           {/* Dynamic top color indicator bar matching the selected role */}
           <div
